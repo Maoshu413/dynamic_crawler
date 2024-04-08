@@ -21,7 +21,7 @@ The example code all_categories_crawler.py contains the following steps:
 4. Write the scraped data to a file
 
 
-The example code can be modified to fit your personal use case. Most functions within the code are very useful and can be directly called.
+**The example code can be modified to fit your personal use case. Most functions within the code are very useful and can be directly called.**
 
 ---
 
