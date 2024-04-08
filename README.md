@@ -20,6 +20,9 @@ The example code all_categories_crawler.py contains the following steps:
 3. Iterate selections of the two list boxes and press a “Go” button to refresh the domain list in a table
 4. Write the scraped data to a file
 
+
+The example code can be modified to fit your personal use case. Most functions within the code are very useful and can be directly called.
+
 ---
 
 Crawled a lot of complicated and complex websites in the development process. Some websites automatically refresh after an element is clicked; others require an additional step of clicking another button that redirects the user (e.g. “Go”). This crawler code accommodates all of those instances.
