@@ -114,6 +114,15 @@ def scrape_all_categories():
     driver.get(base_url)        # navigate to the base_url
     page_load_complete(driver) # wait for the page to be fully loaded
 
+    # dismiss the cookie inquiry dialog box immediately
+    reject_cookie_xpath = '//*[@id="onetrust-reject-all-handler"]'
+    ec = EC.element_to_be_clickable((By.XPATH, reject_cookie_xpath))
+    try:
+        reject_button = WebDriverWait(driver, 10).until(ec)
+        reject_button.click()
+    except TimeoutException:
+        print("Warning: cannot find the Cookie Inquiry Dialog Box!")
+
     # the region dropdown listbox (secondary listbox)
     rbox_xpath = '//*[@id="app"]/div/main/div/div/section[1]/div/div/div[1]/div/div[2]/div/button'
     # the category dropdown listbox (primary listbox)
