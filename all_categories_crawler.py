@@ -207,6 +207,7 @@ def scrape_all_categories():
             ditem_xpathx = '//*[@id="app"]/div/main/div/div/section[2]/div/div/div[1]/table/tbody/tr[{#}]/td[2]/a/span[2]'
             domain_list += get_text_list(driver, ditem_xpathx)
             print(domain_list)
+            driver.delete_all_cookies()     # delete cookies to disable the site's anti-scraping - important!
 
     driver.quit()   # close the browser
 
