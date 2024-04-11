@@ -221,6 +221,10 @@ def scrape_all_categories():
             if wait_clickable(driver, redirect_xpath, click=True) is None:
                 print("# Error: could not find the redirect button!")
                 continue
+            # checks if the redirection wait time exceeded the limit by checking if the element is clickable again
+            if wait_clickable(driver, redirect_xpath) is None:
+                print("# Error: too slow to refresh the page!")
+                continue
             # checks if the domain table is loaded on the new page
             if not wait_all_elements(driver, dbox_xpath):
                 print("# Error: too slow to load the domain table!")
