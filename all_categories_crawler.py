@@ -59,6 +59,17 @@ def wait_clickable(driver, xpath, timeout=10, click=False):
 
     return element
 
+def wait_all_elements(driver, xpath, timeout=10):
+    # wait for all elements under the parent xpath to be present after reload
+
+    ec = EC.presence_of_all_elements_located((By.XPATH, xpath)) # wait for all elements to be present
+    try:
+        WebDriverWait(driver, timeout=timeout).until(ec)
+    except TimeoutException:
+        return False
+
+    return True
+
 def page_load_complete(driver, timeout=10):
     # test if the page is fully loaded
     # not needed if you don't need the entire page to be loaded
@@ -209,6 +220,10 @@ def scrape_all_categories():
             # remove code if no redirect button on your website
             if wait_clickable(driver, redirect_xpath, click=True) is None:
                 print("# Error: could not find the redirect button!")
+                continue
+            # checks if the domain table is loaded on the new page
+            if not wait_all_elements(driver, dbox_xpath):
+                print("# Error: too slow to load the domain table!")
                 continue
             time.sleep(2.0)   # wait for the table to be refreshed
             print(driver.current_url)
